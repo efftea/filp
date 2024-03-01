@@ -55,16 +55,11 @@ women():- woman(X), print(X), nl, fail.
 
 children(X):- parent(X,Y), print(Y), nl, fail.
 
-mother(X,Y):- woman(X), parent(X,Y).
-mother(X):- mother(Y,X), print(Y), nl, fail.
+son(X,Y):- man(X), parent(Y,X).
+son(X):- son(Y,X), print(Y), nl, fail.
 
-brother(X,Y):- man(X), mother(Z,X), mother(Z,Y), X \= Y.
-brother(X):- brother(Y,X), print(Y), print(Y), nl, fail..
-
-b_s(X,Y):- parent(Z,X), mother(Z, Y), X\=Y.
-b_s(X):- b_s(Y,X), print(Y), nl, fail.
-
-
+husband(X,Y):- man(X), parent(X, Z), parent(Y, Z), X \= Y.
+husband(X):- husband(Y, X), print(Y), nl, fail.
 
 
 
