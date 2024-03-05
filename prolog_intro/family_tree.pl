@@ -48,7 +48,6 @@ parent(duhovlad,zlatomir).
 parent(zhdana,zdislava).
 parent(zhdana,zlatomir).
 
-
 men():- man(X), print(X), nl, fail.
 
 women():- woman(X), print(X), nl, fail.
@@ -64,24 +63,17 @@ brother(X):- brother(Y,X), print(Y), print(Y), nl, fail.
 b_s(X,Y):- parent(Z,X), mother(Z, Y), X\=Y.
 b_s(X):- b_s(Y,X), print(Y), nl, fail.
 
+son(X,Y):- man(X), parent(Y,X).
+son(X):- son(Y,X), print(Y), nl, fail.
 
+husband(X,Y):- man(X), parent(X, Z), parent(Y, Z), X \= Y.
+husband(X):- husband(Y, X), print(Y), nl, fail.
 
+grand_pa(X,Y):- man(X), parent(Z,Y), parent(X,Z).
+grand_pa(X):- grand_pa(Y,X), print(Y), nl, fail.
 
+grand_pa_and_da(X,Y):- (woman(Y), grand_pa(X,Y));(woman(X), grand_pa(Y,X)).
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+aunt(X,Y):- woman(X), parent(Z,Y), parent(V,Z), parent(V,X), X \= Z.
+aunt(X):- aunt(Y,X), print(Y), nl, fail.
 
