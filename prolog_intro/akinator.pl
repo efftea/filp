@@ -64,7 +64,7 @@ problem(out_of_paper) :-
 
 
 
-
+%Введённые дополнительные вопросы.
 problem(computer_hot):-
     query('Your computer is getting very hot').
 
@@ -77,6 +77,8 @@ problem(programs_close):-
 problem(shuts_down_restart):-
     query('The computer shuts down or restarts').
 
+
+%Добавить несколько объектов таким образом, чтобы их можно было однозначно определить c введением дополнительных вопросов.
 fault(graphics_card_broken):-
     problem(programs_close),
     problem(strange_spots_on_screen).
@@ -86,6 +88,8 @@ fault(computer_virus):-
     problem(programs_close),
     problem(shuts_down_restart).
 
+
+%Добавить несколько объектов таким образом, чтобы их можно было однозначно определить без введения дополнительных вопросов.
 fault(system_overheating) :-
     problem(blank_display),
     problem(repeating_short_beeps),
