@@ -1,3 +1,14 @@
+ %main()
+ main :-
+    retractall(asked(_,_)),
+    game(Genre),
+    !,
+    nl,
+    write('Your game is '), write(Genre), write(.), nl.
+main :-
+    nl,
+    write('The game cannot be recognized.'), nl.
+
 %genre(+Object)
 genre(shooter) :-
     query('Does your game have a shooter genre?').
@@ -5,7 +16,7 @@ genre(shooter) :-
 genre(strategy) :-
     query('Does your game have a strategy genre?').
 
-genre(RPG) :-
+genre(rpg) :-
     query('Does your game have a RPG genre?').
 
 genre(horror) :-
@@ -27,7 +38,7 @@ genre(action) :-
 game(cyberpunk_2077):-
     genre(shooter),
     genre(action),
-    genre(RPG).
+    genre(rpg).
 
 game(red_dead_redemption_2):-
     genre(action),
@@ -40,7 +51,7 @@ game(metro_exodus) :-
 
 game(warcraft_3) :-
     genre(strategy),
-    genre(RPG).
+    genre(rpg).
 
 game(state_of_survival) :-
     genre(strategy),
@@ -49,18 +60,18 @@ game(state_of_survival) :-
 
 game(spore) :-
     genre(strategy),
-    genre(RPG),
+    genre(rpg),
     genre(action).
 
 game(baldurs_gate_3) :-
-    genre(RPG).
+    genre(rpg).
 
 game(starfield) :-
-    genre(RPG),
+    genre(rpg),
     genre(action).
 
 game(assasin_creed_valhalla) :-
-    genre(RPG),
+    genre(rpg),
     genre(action),
     genre(stealth).
 
@@ -103,7 +114,7 @@ game(sons_of_the_forest) :-
 game(enshrouded) :-
     genre(survival),
     genre(action),
-    problem(RPG).
+    problem(rpg).
 
 game(rust) :-
     genre(survival),
@@ -117,4 +128,13 @@ game(fortnite) :-
 
 game(naraka_bladepoint) :-
     genre(battle_royale),
-    problem(RPG).
+    problem(rpg).
+
+%query(+Prompt)
+query(Prompt) :-
+    (   asked(Prompt, Reply) -> true
+    ;   nl, write(Prompt), write(' (y/n)? '),
+        read(X),(X = y -> Reply = y ; Reply = n),
+	assert(asked(Prompt, Reply))
+    ),
+    Reply = y.
