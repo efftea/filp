@@ -1,164 +1,120 @@
- main :-
-    retractall(asked(_,_)),
-    fault(Problem),
-    !,
-    nl,
-    write('The problem is '), write(Problem), write(.), nl.
-main :-
-    nl,
-    write('The problem cannot be recognized.'), nl.
+%genre(+Object)
+genre(shooter) :-
+    query('Does your game have a shooter genre?').
 
-problem(disc_format) :-
-    query('Does the computer show error cannot format').
+genre(strategy) :-
+    query('Does your game have a strategy genre?').
 
-problem(boot_failure) :-
-    query('Does the computer show boot failure').
+genre(RPG) :-
+    query('Does your game have a RPG genre?').
 
-problem(bad_sector) :-
-    query('Does the computer show bad sector error').
+genre(horror) :-
+    query('Does your game have a horror genre?').
 
-problem(cannot_read) :-
-    query('Does the computer show cannot read from specified device').
+genre(stealth) :-
+    query('Does your game have a stealth genre?').
 
-problem(long_beep) :-
-    query('Is there a long beep during bootup').
+genre(survival) :-
+    query('Does your game have a survival genre?').
 
-problem(short_beep) :-
-    query('Is there a short beep during bootup').
+genre(battle_royale) :-
+    query('Does your game have a battle royale genre?').
 
-problem(two_long_beeps) :-
-    query('Are there two long beeps during bootup').
+genre(action) :-
+    query('Does your game have a action genre?').
 
-problem(two_short_beeps) :-
-    query('Are there two short beeps during bootup').
+%game(+Game)
+game(cyberpunk_2077):-
+    genre(shooter),
+    genre(action),
+    genre(RPG).
 
-problem(blank_display) :-
-    query('Is there a blank display during bootup').
+game(red_dead_redemption_2):-
+    genre(action),
+    genre(shooter).
 
-problem(repeating_short_beeps) :-
-    query('Are there repeating short beeps during bootup').
+game(metro_exodus) :-
+    genre(shooter),
+    genre(action),
+    genre(stealth).
 
-problem(continuous_beeps) :-
-    query('Is there a continuous beep during bootup').
+game(warcraft_3) :-
+    genre(strategy),
+    genre(RPG).
 
-problem(no_beep) :-
-    query('Is there a beep during bootup').
+game(state_of_survival) :-
+    genre(strategy),
+    genre(action),
+    genre(horror).
 
-problem(not_printing) :-
-    query('Is there a problem with printing').
+game(spore) :-
+    genre(strategy),
+    genre(RPG),
+    genre(action).
 
-problem(missing_dots) :-
-    query('Is there a missing character during printing').
+game(baldurs_gate_3) :-
+    genre(RPG).
 
-problem(non_uniform_printing) :-
-    query('Is there uniform printing').
+game(starfield) :-
+    genre(RPG),
+    genre(action).
 
-problem(spread_ink) :-
-    query('Is there spreading of ink during printing').
+game(assasin_creed_valhalla) :-
+    genre(RPG),
+    genre(action),
+    genre(stealth).
 
-problem(paper_jam) :-
-    query('Is there a paper jam during printing').
+game(lethal_company) :-
+    genre(horror),
+    genre(action).
 
-problem(out_of_paper) :-
-    query('Is there out-of- paper error during printing').
+game(resident_evil_5) :-
+    genre(horror),
+    genre(shooter),
+    genre(action).
 
+game(resident_evil_2) :-
+    genre(horror),
+    genre(shooter),
+    genre(action),
+    genre(stealth).
 
+game(assasin_creed_mirage) :-
+    genre(stealth),
+    genre(action).
 
+game(dishonored) :-
+    genre(stealth).
 
-problem(computer_hot):-
-    query('Your computer is getting very hot').
+game(valheim) :-
+    genre(survival),
+    genre(action).
 
-problem(strange_spots_on_screen):-
-    query('You have strange spots on the screen').
+game(astroneer) :-
+    genre(survival),
+    genre(action),
+    genre(strategy).
 
-problem(programs_close):-
-    query('Do programs close for no apparent reason').
+game(sons_of_the_forest) :-
+    genre(survival),
+    genre(action),
+    genre(horror).
 
-problem(shuts_down_restart):-
-    query('The computer shuts down or restarts').
+game(enshrouded) :-
+    genre(survival),
+    genre(action),
+    problem(RPG).
 
-fault(graphics_card_broken):-
-    problem(programs_close),
-    problem(strange_spots_on_screen).
+game(rust) :-
+    genre(survival),
+    genre(action),
+    genre(shooter).
 
-fault(computer_virus):-
-    problem(computer_hot),
-    problem(programs_close),
-    problem(shuts_down_restart).
+game(fortnite) :-
+    genre(battle_royale),
+    genre(action),
+    genre(shooter).
 
-fault(system_overheating) :-
-    problem(blank_display),
-    problem(repeating_short_beeps),
-    problem(continuous_beeps).
-
-fault(no_power_output) :-
-    problem(no_beep),
-    problem(repeating_short_beeps),
-    problem(blank_display).
-
-
-
-
-fault(power_supply) :-
-    problem(repeating_short_beeps),
-    problem(continuous_beeps),
-    problem(blank_display),
-    problem(no_beep).
-
-fault(display_adapter) :-
-    problem(long_beep),
-    problem(two_short_beeps),
-    problem(blank_display),
-    problem(no_beep).
-
-fault(motherboard) :-
-    problem(long_beep),
-    problem(short_beep).
-
-fault(hard_disc) :-
-    problem(two_short_beeps),
-    problem(blank_display).
-
-fault(booting_problem) :-
-    problem(bad_sector),
-    problem(boot_failure).
-
-fault(floppy_disk_unusable) :-
-    problem(bad_sector),
-    problem(cannot_read),
-    problem(disc_format).
-
-fault(printer_head) :-
-    problem(not_printing),
-    problem(missing_dots),
-    problem(nonuniform_printing).
-
-fault(ribbon) :-
-    problem(not_printing),
-    problem(missing_dots),
-    problem(spread_ink).
-
-fault(paper) :-
-    problem(not_printing),
-    problem(paper_jam),
-    problem(out_of_paper).
-
-query(Prompt) :-
-    (   asked(Prompt, Reply) -> true
-    ;   nl, write(Prompt), write(' (y/n)? '),
-        read(X),(X = y -> Reply = y ; Reply = n),
-	assert(asked(Prompt, Reply))
-    ),
-    Reply = y.
-
-
-
-
-
-
-
-
-
-
-
-
+game(naraka_bladepoint) :-
+    genre(battle_royale),
+    problem(RPG).
