@@ -1,4 +1,4 @@
- %main()
+%main()
  main :-
     retractall(asked(_,_)),
     game(Genre),
@@ -35,23 +35,21 @@ genre(action) :-
     query('Does your game have a action genre?').
 
 %game(+Game)
+game(resident_evil_2) :-
+    genre(horror),
+    genre(shooter),
+    genre(action),
+    genre(stealth).
+
 game(cyberpunk_2077):-
     genre(shooter),
     genre(action),
     genre(rpg).
 
-game(red_dead_redemption_2):-
-    genre(action),
-    genre(shooter).
-
 game(metro_exodus) :-
     genre(shooter),
     genre(action),
     genre(stealth).
-
-game(warcraft_3) :-
-    genre(strategy),
-    genre(rpg).
 
 game(state_of_survival) :-
     genre(strategy),
@@ -63,42 +61,14 @@ game(spore) :-
     genre(rpg),
     genre(action).
 
-game(baldurs_gate_3) :-
-    genre(rpg).
-
-game(starfield) :-
-    genre(rpg),
-    genre(action).
-
 game(assasin_creed_valhalla) :-
     genre(rpg),
     genre(action),
     genre(stealth).
 
-game(lethal_company) :-
-    genre(horror),
-    genre(action).
-
 game(resident_evil_5) :-
     genre(horror),
     genre(shooter),
-    genre(action).
-
-game(resident_evil_2) :-
-    genre(horror),
-    genre(shooter),
-    genre(action),
-    genre(stealth).
-
-game(assasin_creed_mirage) :-
-    genre(stealth),
-    genre(action).
-
-game(dishonored) :-
-    genre(stealth).
-
-game(valheim) :-
-    genre(survival),
     genre(action).
 
 game(astroneer) :-
@@ -114,7 +84,7 @@ game(sons_of_the_forest) :-
 game(enshrouded) :-
     genre(survival),
     genre(action),
-    problem(rpg).
+    genre(rpg).
 
 game(rust) :-
     genre(survival),
@@ -128,7 +98,37 @@ game(fortnite) :-
 
 game(naraka_bladepoint) :-
     genre(battle_royale),
-    problem(rpg).
+    genre(rpg).
+
+game(red_dead_redemption_2):-
+    genre(action),
+    genre(shooter).
+
+game(warcraft_3) :-
+    genre(strategy),
+    genre(rpg).
+
+game(starfield) :-
+    genre(rpg),
+    genre(action).
+
+game(lethal_company) :-
+    genre(horror),
+    genre(action).
+
+game(assasin_creed_mirage) :-
+    genre(stealth),
+    genre(action).
+
+game(valheim) :-
+    genre(survival),
+    genre(action).
+
+game(dishonored) :-
+    genre(stealth).
+
+game(baldurs_gate_3) :-
+    genre(rpg).
 
 %query(+Prompt)
 query(Prompt) :-
