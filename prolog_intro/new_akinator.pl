@@ -39,12 +39,18 @@ game(resident_evil_2) :-
     genre(horror),
     genre(shooter),
     genre(action),
-    genre(stealth).
+    genre(stealth),
+    bagof(X, asked(X,y),L),
+    length(L,A),
+    A=4,!.
 
 game(cyberpunk_2077):-
     genre(shooter),
     genre(action),
-    genre(rpg).
+    genre(rpg),
+    bagof(X, asked(X,y),L),
+    length(L,A),
+    A=3,!.
 
 game(metro_exodus) :-
     genre(shooter),
@@ -54,17 +60,26 @@ game(metro_exodus) :-
 game(state_of_survival) :-
     genre(strategy),
     genre(action),
-    genre(horror).
+    genre(horror),
+    bagof(X, asked(X,y),L),
+    length(L,A),
+    A=3,!.
 
 game(spore) :-
     genre(strategy),
     genre(rpg),
-    genre(action).
+    genre(action),
+    bagof(X, asked(X,y),L),
+    length(L,A),
+    A=3,!.
 
 game(assasin_creed_valhalla) :-
     genre(rpg),
     genre(action),
-    genre(stealth).
+    genre(stealth),
+    bagof(X, asked(X,y),L),
+    length(L,A),
+    A=3,!.
 
 game(resident_evil_5) :-
     genre(horror),
@@ -74,31 +89,49 @@ game(resident_evil_5) :-
 game(astroneer) :-
     genre(survival),
     genre(action),
-    genre(strategy).
+    genre(strategy),
+    bagof(X, asked(X,y),L),
+    length(L,A),
+    A=3,!.
 
 game(sons_of_the_forest) :-
     genre(survival),
     genre(action),
-    genre(horror).
+    genre(horror),
+    bagof(X, asked(X,y),L),
+    length(L,A),
+    A=3,!.
 
 game(enshrouded) :-
     genre(survival),
     genre(action),
-    genre(rpg).
+    genre(rpg),
+    bagof(X, asked(X,y),L),
+    length(L,A),
+    A=3,!.
 
 game(rust) :-
     genre(survival),
     genre(action),
-    genre(shooter).
+    genre(shooter),
+    bagof(X, asked(X,y),L),
+    length(L,A),
+    A=3,!.
 
 game(fortnite) :-
     genre(battle_royale),
     genre(action),
-    genre(shooter).
+    genre(shooter),
+    bagof(X, asked(X,y),L),
+    length(L,A),
+    A=3,!.
 
 game(naraka_bladepoint) :-
     genre(battle_royale),
-    genre(rpg).
+    genre(rpg),
+    bagof(X, asked(X,y),L),
+    length(L,A),
+    A=2,!.
 
 game(red_dead_redemption_2):-
     genre(action),
