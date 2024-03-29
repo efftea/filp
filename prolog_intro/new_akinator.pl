@@ -34,7 +34,23 @@ genre(battle_royale) :-
 genre(action) :-
     query('Does your game have a action genre?').
 
+genre(vr) :-
+    query('Does your game have a VR genre?').
+
+genre(futurism) :-
+    query('Does your game have a futurism genre?').
+
 %game(+Game)
+game(resident_evil_village) :-
+    genre(horror),
+    genre(shooter),
+    genre(action),
+    genre(stealth),
+    genre(vr),
+    bagof(X, asked(X,y),L),
+    length(L,A),
+    A=5,!.
+
 game(resident_evil_2) :-
     genre(horror),
     genre(shooter),
@@ -44,13 +60,21 @@ game(resident_evil_2) :-
     length(L,A),
     A=4,!.
 
-game(cyberpunk_2077):-
-    genre(shooter),
-    genre(action),
+game(dishonored) :-
     genre(rpg),
+    genre(action),
+    genre(stealth),
+    genre(futurism),
     bagof(X, asked(X,y),L),
     length(L,A),
-    A=3,!.
+    A=4,!.
+
+game(assasin_creed_valhalla) :-
+    genre(rpg),
+    genre(action),
+    genre(stealth).
+
+
 
 game(metro_exodus) :-
     genre(shooter),
@@ -69,14 +93,6 @@ game(spore) :-
     genre(strategy),
     genre(rpg),
     genre(action),
-    bagof(X, asked(X,y),L),
-    length(L,A),
-    A=3,!.
-
-game(assasin_creed_valhalla) :-
-    genre(rpg),
-    genre(action),
-    genre(stealth),
     bagof(X, asked(X,y),L),
     length(L,A),
     A=3,!.
@@ -171,3 +187,4 @@ query(Prompt) :-
 	assert(asked(Prompt, Reply))
     ),
     Reply = y.
+    
