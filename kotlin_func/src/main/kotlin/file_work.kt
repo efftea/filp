@@ -1,6 +1,7 @@
 import java.lang.System.`in`
 import java.util.*
 import recursions.*
+import dividers.*
 import java.io.File
 import kotlin.reflect.KFunction
 import kotlin.reflect.*
@@ -23,13 +24,16 @@ fun FileInDirectory(filePath: String) {
 // Получение функции по имени
 fun getFunc(name: String): KFunction<Int>? {
     val Recursion = recursions()
+    val diver = dividers()
     val funcs = mapOf(
         "max" to Recursion::max,
         "minOdd" to Recursion::minOdd,
         "gcd" to Recursion::gcd,
         "maxTail" to Recursion::maxTail,
         "minOddTail" to Recursion::minOddTail,
-        "gcdTail" to Recursion::gcdTail
+        "gcdTail" to Recursion::gcdTail,
+        "dTail" to diver::dTail,
+        "countDTail" to diver::countDTail
     )
     return funcs[name]
 }
