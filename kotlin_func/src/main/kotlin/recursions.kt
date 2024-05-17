@@ -1,6 +1,6 @@
 import java.util.*
 
-class recursions {
+class recursions{
 
     //Найти максимальную цифру числа. Рекурсия вверх.
     fun max(x: Int): Int = if (x < 10) x else {if(x%10 > max(x/10)) x%10 else max(x/10)}
