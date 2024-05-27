@@ -1,3 +1,5 @@
+import java.util.ListResourceBundle
+
 class CleanFuncs(){
     tailrec fun arrayOP(m: List<Int>, f: (Int, Int) -> Int, i: Int = m.size, a: Int = 0): Int =
         if (i <= 0) a else arrayOP(m, f, i - 1, f(a, m[i - 1]))
@@ -31,10 +33,52 @@ class CleanFuncs(){
                 )
             }
     }
+
+    // проверка является ли глобальным минимумом
+    fun globMin(list: List<Int>,ind:Int):Boolean=if(list.sorted()[0]==list[ind]&&list.count { it==list[ind] }==1)true else false
+
+    // нахождение двух наименьших
+    tailrec fun twoMin(list: List<Int>, ind: Int = 0, i: Int = -1): List<Int> {
+        if (i >= 0) return listOf(i, ind)
+        else {
+            if((list.sorted()[0] == list[ind])or(list.sorted()[1] == list[ind])) {
+                if (list.sorted()[0] == list[ind]) return twoMin(list, ind + 1, ind)
+                if (list.sorted()[1] == list[ind]) return twoMin(list, ind + 1, ind)
+            }
+            else return twoMin(list, ind+1, i)
+        }
+        return listOf(-1, -1)
+    }
+
+    //Нахождение всех элементов в интервале
+    fun intervalAB(list: List<Int>,a: Int,b: Int): List<Int> {
+        return list.sorted().subList(list.sorted().indexOfFirst{it==a},list.sorted().indexOfLast { it==b }+1)
+    }
+
+    //Нахождение все элементов которых нет в изначальном листе
+    fun allCif(list: List<Int>,a: Int = list.sorted().min(),b: Int = list.sorted().max()): List<Int> {
+        val range = (a..b).toList()
+        return range.filterNot { it in list }
+    }
+
+    //Элементы между первым и последним максимальными
+    fun subListMax(list: List<Int>): Set<Int> {
+        val max = list.maxOrNull() ?: return emptySet()
+        val firstMaxIndex = list.indexOf(max)
+        val lastMaxIndex = list.lastIndexOf(max)
+        if (firstMaxIndex == lastMaxIndex) return emptySet()
+        return list.subList(firstMaxIndex + 1, lastMaxIndex).toSet()
+    }
+
+    // Колличество глобальных максимумов
+    fun countGlobMax(list: List<Int>): Int {
+        val maxValue = list.maxOrNull() ?: return 0
+        return list.count { it == maxValue }
+    }
+
 }
     fun main(){
-        var list = listOf<Int>(1,2,3,4)
-        var list2 = listOf<Int>(1,2,3,4)
-        var list3 = listOf<Int>(1,2,3,4)
-        println(CleanFuncs().tripleList(list,list2,list3))
+        var f = CleanFuncs()
+        var list = listOf<Int>(0,9,1,2,3,4,9,8,8,9,0,0)
+        println(f.countGlobMax(list))
     }
