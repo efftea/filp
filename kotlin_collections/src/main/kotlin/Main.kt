@@ -19,7 +19,7 @@ fun vvod(n: Int):MutableList<Int> {
     return m
 }
 
-tailrec fun arrayOP(m: MutableList<Int>,i: Int, a: Int = 0, f: (Int, Int) -> Int): Int =
+tailrec fun arrayOP(m: MutableList<Int>,i: Int = m.size, a: Int = 0, f: (Int, Int) -> Int): Int =
     if (i <= 0) a else arrayOP(m,i-1, f(a, m[i-1]), f)
 
 fun sumd(m: MutableList<Int>): Int = arrayOP(m, m.size, 0) { a, b -> (a + b) }
